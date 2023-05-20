@@ -33,7 +33,7 @@ Private Sub TestCleanup()
 End Sub
 
 '@TestMethod("StaticStringBuilder")
-Public Sub StaticStringBuilder_AppendStr_00()
+Public Sub StaticStringBuilder_AppendStr_001()
     On Error GoTo TestFail
     
     Dim sb As StaticStringBuilder.Ty
