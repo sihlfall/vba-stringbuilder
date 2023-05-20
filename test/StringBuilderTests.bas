@@ -359,8 +359,8 @@ TestFail:
 End Sub
 
 '@TestMethod("StringBuilder")
-Public Sub StaticStringBuilder_Clear_003()
-    ' Test: Clear can be called on empty StaticStringBuilder
+Public Sub StringBuilder_Clear_003()
+    ' Test: Clear can be called on empty StringBuilder
     On Error GoTo TestFail
     
     With New StringBuilder
@@ -378,7 +378,7 @@ End Sub
 
 '@TestMethod("StringBuilder")
 Public Sub StringBuilder_Length_001()
-    ' Test: Length delivers 0 for initially empty StaticStringBuilder
+    ' Test: Length delivers 0 for initially empty StringBuilder
     On Error GoTo TestFail
     
     With New StringBuilder
@@ -409,7 +409,7 @@ End Sub
 
 '@TestMethod("StringBuilder")
 Public Sub StringBuilder_Substr_001()
-    ' Test: Substr delivers empty string for initially empty StaticStringBuilder
+    ' Test: Substr delivers empty string for initially empty StringBuilder
     On Error GoTo TestFail
     
     With New StringBuilder
@@ -519,8 +519,8 @@ TestFail:
 End Sub
 
 '@TestMethod("StringBuilder")
-Public Sub StaticStringBuilder_SetMinimumCapacity_001()
-    ' Test: StaticStringBuilder initially uses correct capacity after SetMinimumCapacity
+Public Sub StringBuilder_SetMinimumCapacity_001()
+    ' Test: StringBuilder initially uses correct capacity after SetMinimumCapacity
     On Error GoTo TestFail
     
     With New StringBuilder
@@ -538,7 +538,7 @@ End Sub
 
 '@TestMethod("StringBuilder")
 Public Sub StringBuilder_SetMinimumCapacity_002()
-    ' Test: StaticStringBuilder correctly increases capacity after SetMinimumCapacity
+    ' Test: StringBuilder correctly increases capacity after SetMinimumCapacity
     On Error GoTo TestFail
     
     With New StringBuilder
@@ -557,7 +557,7 @@ End Sub
 
 '@TestMethod("StringBuilder")
 Public Sub StringBuilder_SetMinimumCapacity_003()
-    ' Test: StaticStringBuilder uses new minimum capacity on increase after SetMinimumCapacity
+    ' Test: StringBuilder uses new minimum capacity on increase after SetMinimumCapacity
     On Error GoTo TestFail
     
     With New StringBuilder
