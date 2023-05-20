@@ -41,7 +41,7 @@ Private mActive As Integer            ' index of the currently active buffer (0 
 Private mBuffer(0 To 1) As String     ' mBuffer(.active) is the currently active buffer
 Private mCapacity As Long             ' current allocated capacity in characters
 Private mLength As Long               ' current length of the string, in characters
-Private mMinimumCapacity As Long      ' minimum capacity set (0 or >= 2)
+Private mMinimumCapacity As Long      ' minimum capacity set (>= 2)
 
 ''' Public properties
 

@@ -77,7 +77,7 @@ Private Type SsbTy
   Buffer(0 To 1) As String     ' .Buffer(.Active) is the currently active buffer
   Capacity As Long             ' current allocated capacity in characters
   Length As Long               ' current length of the string, in characters
-  MinimumCapacity As Long      ' minimum capacity set (0 or >= 2)
+  MinimumCapacity As Long      ' minimum capacity set (>= 2)
 End Type
 
 Private InjectionVariablesDictionary As Object
