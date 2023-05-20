@@ -111,6 +111,13 @@ For convenience, the `StringBuilder` class supports the following features, insp
   ```
   Like the previous feature, this relies on function attributes, so it will only work if the class is imported. Note, however, that late binding costs some percents of performance.
 
+<<<<<<< HEAD
+=======
+### Tests
+
+The unit tests are meant to be used with [Rubberduck](https://rubberduckvba.com/).
+
+>>>>>>> master
 ### Design ideas
 
 We avoid frequent memory allocations and copying by pre-allocating a buffer of some predefined minimum capacity (the default is
