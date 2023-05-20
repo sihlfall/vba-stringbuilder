@@ -99,6 +99,13 @@ Public Property Get InjectionVariables() As Object
   Set InjectionVariables = InjectionVariablesDictionary
 End Property
 
+Public Property Get MinimumCapacity() As Long
+  MinimumCapacity = Ssb.MinimumCapacity
+End Property
+Public Property Let MinimumCapacity(desiredMinimumCapacity As Long)
+  If desiredMinimumCapacity >= 2 Then Ssb.MinimumCapacity = desiredMinimumCapacity Else Ssb.MinimumCapacity = 2
+End Property
+
 Public Property Get Str() As String
 Attribute Str.VB_UserMemId = 0
   If Tainted Then Call RefreshFromRaw
@@ -197,7 +204,6 @@ Private Sub ClearReserve(ByVal nRequired As Long)
     .Length = 0
     .Buffer(1) = vbNullString
     If nRequired > 0 Then
-      If .MinimumCapacity <= 1 Then .MinimumCapacity = DEFAULT_MINIMUM_CAPACITY
       .Capacity = .MinimumCapacity
       Do
         If .Capacity >= nRequired Then Exit Do
@@ -219,7 +225,6 @@ Private Sub SwitchToLargerBuffer(ByVal nRequired As Long)
   ' Copy string over to the new buffer.
   ' Deallocate the old buffer.
   With Ssb
-    If .MinimumCapacity <= 1 Then .MinimumCapacity = DEFAULT_MINIMUM_CAPACITY
     If .Capacity < .MinimumCapacity Then .Capacity = .MinimumCapacity
     Do
       If .Capacity >= nRequired Then Exit Do
@@ -233,6 +238,7 @@ Private Sub SwitchToLargerBuffer(ByVal nRequired As Long)
 End Sub
 
 Private Sub Class_Initialize()
+  Ssb.MinimumCapacity = DEFAULT_MINIMUM_CAPACITY
   JoinStr = vbCrLf
 End Sub
 

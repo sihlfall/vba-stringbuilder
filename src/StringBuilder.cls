@@ -13,7 +13,7 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 '
 ' StringBuilder
-' v0.1.1 by Sihlfall
+' v0.1.2 by Sihlfall
 ' MIT license
 '
 ' A (relatively) performant, portable StringBuilder class for VBA / VB6.
@@ -123,7 +123,6 @@ Private Sub ClearReserve(ByVal nRequired As Long)
     mLength = 0
     mBuffer(1) = vbNullString
     If nRequired > 0 Then
-        If mMinimumCapacity <= 1 Then mMinimumCapacity = DEFAULT_MINIMUM_CAPACITY
         mCapacity = mMinimumCapacity
         Do
             If mCapacity >= nRequired Then Exit Do
@@ -136,13 +135,11 @@ Private Sub ClearReserve(ByVal nRequired As Long)
     End If
 End Sub
 
-
 Private Sub SwitchToLargerBuffer(ByVal nRequired As Long)
     ' Allocate buffer that is able to hold nRequired characters.
     ' The new buffer size is calculated by repeatedly growing the current size by 50%.
     ' Copy string over to the new buffer.
     ' Deallocate the old buffer.
-    If mMinimumCapacity <= 1 Then mMinimumCapacity = DEFAULT_MINIMUM_CAPACITY
     If mCapacity < mMinimumCapacity Then mCapacity = mMinimumCapacity
     Do
         If mCapacity >= nRequired Then Exit Do
@@ -154,4 +151,6 @@ Private Sub SwitchToLargerBuffer(ByVal nRequired As Long)
     mActive = 1 - mActive
 End Sub
 
-
+Private Sub Class_Initialize()
+    mMinimumCapacity = DEFAULT_MINIMUM_CAPACITY
+End Sub
