@@ -68,6 +68,7 @@ Attribute VB_Exposed = False
 'Which significantly improves maintainability of the code.
 Option Explicit
 
+' Must be >= 2.
 Private Const DEFAULT_MINIMUM_CAPACITY As Long = 16
 
 ' StaticStringBuilder from https://github.com/sihlfall/vba-stringbuilder

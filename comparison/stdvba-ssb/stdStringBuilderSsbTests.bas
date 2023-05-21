@@ -320,6 +320,52 @@ TestFail:
 End Sub
 
 '@TestMethod("stdStringBuilderSsb")
+Public Sub stdStringBuilderSsb_Str_057()
+    ' Test: Correctly appends single characters after a long string has been assigned to a
+    '    StringBuilder containing a short string
+    On Error GoTo TestFail
+    
+    Dim sb As stdStringBuilderSsb, i As Integer
+    Set sb = stdStringBuilderSsb.Create()
+    sb.JoinStr = vbNullString
+    sb.Append ("aa")
+    Assert.AreEqual "aa", sb.Str
+    sb.Str = String(10000, "b")
+    Assert.AreEqual String(10000, "b"), sb.Str
+    For i = 1 To 25000
+        sb.Append ("d")
+    Next
+    Assert.AreEqual String(10000, "b") & String(25000, "d"), sb.Str
+TestExit:
+    Exit Sub
+TestFail:
+    Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
+    Resume TestExit
+End Sub
+
+'@TestMethod("stdStringBuilderSsb")
+Public Sub stdStringBuilderSsb_Str_060()
+    ' Test: Correctly appends single characters after setting MinimumCapacity = 0
+    On Error GoTo TestFail
+    
+    Dim sb As stdStringBuilderSsb, i As Integer
+    Set sb = stdStringBuilderSsb.Create()
+    sb.JoinStr = vbNullString
+    sb.MinimumCapacity = 0
+    Assert.AreEqual 2&, sb.MinimumCapacity
+    For i = 1 To 1000
+        sb.Append ("d")
+    Next
+    Assert.AreEqual String(1000, "d"), sb.Str
+TestExit:
+    Exit Sub
+TestFail:
+    Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
+    Resume TestExit
+End Sub
+
+
+'@TestMethod("stdStringBuilderSsb")
 Public Sub stdStringBuilderSsb_Demo()
     ' Test: Demo code
     On Error GoTo TestFail
