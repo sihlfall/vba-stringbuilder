@@ -21,11 +21,11 @@ Attribute VB_Name = "StaticStringBuilder"
 Option Explicit
 
 ' Must be at least 2.
-Const DEFAULT_MINIMUM_CAPACITY As Long = 16
+Public Const DEFAULT_MINIMUM_CAPACITY As Long = 16
 
 ' The StaticStringBuilder type.
 ' Best do not access its fields directly, but rather use the below subroutines.
-Type Ty
+Public Type Ty
     Active As Integer            ' index of the currently active buffer (0 or 1)
     Buffer(0 To 1) As String     ' .buffer(.active) is the currently active buffer
     Capacity As Long             ' current allocated capacity in characters
@@ -38,7 +38,7 @@ End Type
 
 ' Append s to the string being built.
 ' s is taken by reference for performance reasons only. s will remain unchanged.
-Sub AppendStr(ByRef sb As Ty, ByRef s As String)
+Public Sub AppendStr(ByRef sb As Ty, ByRef s As String)
     Dim Length As Long, nRequired As Long
     With sb
         Length = Len(s)
@@ -50,7 +50,7 @@ Sub AppendStr(ByRef sb As Ty, ByRef s As String)
     End With
 End Sub
 
-Sub Clear(ByRef sb As Ty)
+Public Sub Clear(ByRef sb As Ty)
     With sb
         .Active = 0
         .Buffer(0) = vbNullString
@@ -60,17 +60,17 @@ Sub Clear(ByRef sb As Ty)
     End With
 End Sub
 
-Function GetLength(ByRef sb As Ty) As Long
+Public Function GetLength(ByRef sb As Ty) As Long
     GetLength = sb.Length
 End Function
 
-Function GetStr(ByRef sb As Ty) As String
+Public Function GetStr(ByRef sb As Ty) As String
     With sb
         GetStr = Left$(.Buffer(.Active), .Length)
     End With
 End Function
 
-Function GetSubstr(ByRef sb As Ty, ByVal start As Long, ByVal Length As Long) As String
+Public Function GetSubstr(ByRef sb As Ty, ByVal start As Long, ByVal Length As Long) As String
     Dim n As Long
     With sb
         n = .Length - start + 1
@@ -83,7 +83,7 @@ Function GetSubstr(ByRef sb As Ty, ByVal start As Long, ByVal Length As Long) As
     End With
 End Function
 
-Sub SetMinimumCapacity(ByRef sb As Ty, ByVal MinimumCapacity As Long)
+Public Sub SetMinimumCapacity(ByRef sb As Ty, ByVal MinimumCapacity As Long)
     If MinimumCapacity >= 2 Then sb.MinimumCapacity = MinimumCapacity Else sb.MinimumCapacity = 2
 End Sub
 
